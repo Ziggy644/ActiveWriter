@@ -1,0 +1,229 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title id="tti">Active Writer</title>
+		<style>
+			html, body  {
+				margin: 0;
+				background-color: black;
+				position: fixed;
+				left: 0;
+				top: 0;
+				right: 0;
+				bottom: 0;
+			}
+			
+			#wrapper {
+				width: 100%;
+				height: 100%;
+				text-shadow: 0px 0px 4px purple;
+				font-family: "Arial";
+				object-fit: cover;
+				font-size: 60px;
+				color: black;
+				position: fixed;
+				top: 35%;
+				z-index: 2;
+			}
+			
+			#text {
+				margin: 10;
+				width: 100%;
+				height: 100%;
+				font-family: "Arial";
+				font-size: 30px;
+				color: white;
+				position: fixed;
+				top: 40%;
+				z-index: 6;
+			}
+			
+			#clickable {
+				width: 100%;
+				height: 100%;
+			}
+			
+			.credits {
+				font-size: 30px;
+			}
+			
+			video {
+				width: 100%;
+				height: 100%;
+				object-fit: fill;
+				position: fixed;
+				z-index: 3;
+			}
+			
+			.personwrapper {
+				width: 100%;
+				height: 100%;
+				position: fixed;
+				z-index: 4;
+			}
+			
+			.person {
+				width: 100%;
+				height: 100%;
+				position: fixed;
+				z-index: 5;
+			}
+			
+			.popup {
+				font-family: "Arial";
+				position: absolute;
+				left: 24%;
+				top: 25%;
+				z-index: 100;
+				background-color: blue;
+				border: 15px solid navy;
+				opacity: 0.6;
+				width: 50%;
+				height: 50%;
+				text-align: center;
+			}
+			
+			.msgtxt {
+				font-size: 20px;
+				color: white;
+				opacity: 1.0;
+			}
+			
+			#b1, #b0 {
+				width: 75%;
+				height: 10%;
+				background-color: blue;
+				border: 4px solid lightblue;
+				border-radius: 25%;
+				color: lightblue;
+				font-size: 20px;
+				opacity: 1.0;
+			}
+			
+			.keyboard {
+				font-family: "Arial";
+				text-align: center;
+				width: 100%;
+				height: 50%;
+				background-color: blue;
+				opacity: 0.6;
+				position: fixed;
+				left: 0;
+				bottom: 0;
+				z-index: 200;
+			}
+			
+			#input {
+				font-family: "Arial";
+				font-size: 25px;
+				color: white;
+			}
+			
+			.keys {
+				width: 8%;
+				height: 32px;
+				background-color: blue;
+				border: 4px solid lightblue;
+				border-radius: 25%;
+				color: lightblue;
+				opacity: 1.0;
+				font-size: 12px;
+			}
+			
+			.bigkeys {
+				width: 20%;
+				height: 32px;
+				background-color: blue;
+				border: 4px solid lightblue;
+				border-radius: 25%;
+				color: lightblue;
+				opacity: 1.0;
+				font-size: 12px;
+			}
+			
+			.bkg {
+				width: 100%;
+				height: 100%;
+				visibility: hidden;
+				object-fit: cover;
+				position: fixed
+				z-index: 1;
+			}
+		</style>
+		<link rel="icon" href="./icon.png" />
+	</head>
+	<body>
+		<div id="clickable">
+			<div id="videowrapper">
+				<video id="TF"></video>
+			</div>
+			<div id="personwrapper">
+				<img class="person" id="person" style="visibility: hidden;">
+			</div>
+			<img class="bkg" id="bkg" style="visibility: hidden;">
+			<center>
+				<b>
+				<div id="wrapper"></div>
+				</b>
+				<div id="text"></div>
+			</center>
+		</div>
+		<div class="popup" id="message" style="visibility: hidden;">
+		<br>
+			<i><b>
+				<p class="msgtxt" id="msgtxt"></p>
+			</b></i><br><br><br>
+			<button id="b0"></button><br><br>
+			<button id="b1"></button>
+		</div>
+		<div class="keyboard" id="keyboard" style="visibility: hidden;">
+			<i><b>
+				<p class="msgtxt" id="question"></p>
+			</b><br>
+			<div id="input"></div></i><br>
+			<button class="keys" id="b_0">A</button>
+			<button class="keys" id="b_1">B</button>
+			<button class="keys" id="b_2">C</button>
+			<button class="keys" id="b_3">D</button>
+			<button class="keys" id="b_4">E</button>
+			<button class="keys" id="b_5">F</button>
+			<button class="keys" id="b_6">G</button>
+			<button class="keys" id="b_7">H</button><br><br>
+			<button class="keys" id="b_8">I</button>
+			<button class="keys" id="b_9">J</button>
+			<button class="keys" id="b_10">K</button>
+			<button class="keys" id="b_11">L</button>
+			<button class="keys" id="b_12">M</button>
+			<button class="keys" id="b_13">N</button>
+			<button class="keys" id="b_14">O</button>
+			<button class="keys" id="b_15">P</button>
+			<button class="keys" id="b_16">Q</button><br><br>
+			<button class="keys" id="b_17">R</button>
+			<button class="keys" id="b_18">S</button>
+			<button class="keys" id="b_19">T</button>
+			<button class="keys" id="b_20">U</button>
+			<button class="keys" id="b_21">V</button>
+			<button class="keys" id="b_22">W</button>
+			<button class="keys" id="b_23">X</button>
+			<button class="keys" id="b_24">Y</button>
+			<button class="keys" id="b_25">Z</button><br><br>
+			<button class="bigkeys" id="b_26">SPACE</button>
+			<button class="bigkeys"id="b_27">CLEAR</button>
+			<button class="bigkeys" id="set">OKAY</button>
+		</div>
+		<audio id="voice"></audio>
+		<audio id="sfx0"></audio>
+		<audio id="sfx1"></audio>
+		<audio id="sfx2"></audio>
+		<audio id="sfx3"></audio>
+		<audio id="sfx4"></audio>
+		<audio id="sfx5"></audio>
+		<audio id="sfx6"></audio>
+		<audio id="sfx7"></audio>
+		<audio id="music0"></audio>
+		<audio id="music1"></audio>
+		<input type="file" id="story" accept="text/plain" hidden />
+		<script src="./main.js"></script>
+	</body>
+</html>
