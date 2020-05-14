@@ -167,6 +167,7 @@ var bkgimagefading = false;
 var forimagefading = false;
 var videofading = false;
 var firstpress = true;
+var sleeping = false;
 var sfxplaying = false;
 var currentsong;
 var textindex = 0;
@@ -483,9 +484,7 @@ function typeWriter(mtxt, speed) {
 			var x = setInterval(function() {
 				if(index > ttxt.length) {
 					clearInterval(x);
-					
 					voicing = false;
-					textindex++;
 					typing = false;
 				} else {
 					txt_el.innerHTML += ttxt.charAt(index);
@@ -506,6 +505,9 @@ function typeWriter(mtxt, speed) {
 				});
 			}
 		}
+}
+function sleep(ms) {
+	return new Promise(resolve => setTimeout(resolve, ms));
 }
 function optionEvent(evt, params) {
 	document.getElementById('clickable').style.display = null;
@@ -925,8 +927,8 @@ document.getElementById('set').addEventListener('mouseout', function() {
 	playSFX(baseSFX.s_choose, true);
 	this.style.color = "lightblue";
 });
-function parseText(txt) {
-	var seperated = txt.split(/<|>/);
+async function parseText(txts) {
+	var seperated = txts.split(/<|>/);
 	for(var i = 0; i < seperated.length; i++) {
 			if(seperated[i].indexOf(":") > -1) {
 				var cmd = seperated[i].split(":");
@@ -971,7 +973,8 @@ function parseText(txt) {
 						error = true;
 						var emsg = "Variable error: person not defined.";
 						console.error(emsg);
-						music.pause();
+						music[0][0].pause();
+						music[1][0].pause();
 					} else {
 						if(cmd[1] == "buna") {
 							console.log("voice changed to: '"+cmd[1]+"'");
@@ -986,7 +989,8 @@ function parseText(txt) {
 							error = true;
 							var emsg = "Variable error: person not recognized: "+cmd[1];
 							console.error(emsg);
-							music.pause();
+							music[0][0].pause();
+							music[1][0].pause();
 						}
 					}
 				} else if(cmd[0] == "options") {
@@ -1042,11 +1046,19 @@ function parseText(txt) {
 					if(!error) {
 						if(textindex == 0) {
 							setTimeout(function() {
-								typeWriter(cmd[1], cmd[2]);
+								if(cmd[1] == "true") {
+									typeWriter(cmd[2], cmd[3]);
+								} else {
+									txt_el.innerHTML = cmd[2];
+								}
 							}, 3000);
 						} else {
 							setTimeout(function() {
-								typeWriter(cmd[1], cmd[2]);
+								if(cmd[1] == "true") {
+									typeWriter(cmd[2], cmd[3]);
+								} else {
+									txt_el.innerHTML = cmd[2];
+								}
 							}, 600);
 						}
 					}
@@ -1057,11 +1069,16 @@ function parseText(txt) {
 						document.getElementById('clickable').click();
 						autoclick = false;
 					}, cmd[1]);
+				} else if(cmd[0] == "delay") {
+					delaying = true;
+					await sleep(cmd[1]);
+					delaying = false;
 				} else {
 					error = true;
 					var emsg = "Syntax error: unkwown command: "+cmd[0];
 					console.error(emsg);
-					music.pause();
+					music[0][0].pause();
+					music[1][0].pause();
 				}
 			}
 	}
@@ -1110,12 +1127,13 @@ document.getElementById('clickable').addEventListener('click', function() {
 		txt_el.innerHTML = "";
 		firstpress = false;
 		}
-		if(!error && !playing && !typing && textindex > 0 && !forimagefading && !bkgimagefading && !intro && !ending && !v && !prompting && !titling && !autoclick) {
+		if(!error && !sleeping && !playing && !typing && textindex > 0 && !forimagefading && !bkgimagefading && !intro && !ending && !v && !prompting && !titling && !autoclick) {
 			playSFX(baseSFX.s_button, true);
 		}
-		if(!intro && !voicing && !v && !declined && !titling && !forimagefading && !bkgimagefading && !playing && !typing && !prompting && !error && textindex < txt.length) {
+		if(!intro && !sleeping && !voicing && !v && !declined && !titling && !forimagefading && !bkgimagefading && !playing && !typing && !prompting && !error && textindex < txt.length) {
 			setTimeout(function() {
 				parseText(txt[textindex]);
+				textindex++;
 			}, 250);
 		}
 		if(textindex >= txt.length) {

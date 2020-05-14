@@ -28,6 +28,7 @@ Partial Class Form13
         Me.MaskedTextBox1 = New System.Windows.Forms.MaskedTextBox
         Me.Label3 = New System.Windows.Forms.Label
         Me.Button1 = New System.Windows.Forms.Button
+        Me.CheckBox1 = New System.Windows.Forms.CheckBox
         Me.SuspendLayout()
         '
         'Label1
@@ -41,16 +42,16 @@ Partial Class Form13
         '
         'TextBox1
         '
-        Me.TextBox1.Location = New System.Drawing.Point(78, 8)
+        Me.TextBox1.Location = New System.Drawing.Point(87, 8)
         Me.TextBox1.Multiline = True
         Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(489, 47)
+        Me.TextBox1.Size = New System.Drawing.Size(480, 47)
         Me.TextBox1.TabIndex = 1
         '
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(12, 64)
+        Me.Label2.Location = New System.Drawing.Point(9, 36)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(36, 13)
         Me.Label2.TabIndex = 2
@@ -58,7 +59,7 @@ Partial Class Form13
         '
         'MaskedTextBox1
         '
-        Me.MaskedTextBox1.Location = New System.Drawing.Point(54, 61)
+        Me.MaskedTextBox1.Location = New System.Drawing.Point(51, 33)
         Me.MaskedTextBox1.Mask = "###"
         Me.MaskedTextBox1.Name = "MaskedTextBox1"
         Me.MaskedTextBox1.Size = New System.Drawing.Size(27, 20)
@@ -82,11 +83,22 @@ Partial Class Form13
         Me.Button1.Text = "add"
         Me.Button1.UseVisualStyleBackColor = True
         '
+        'CheckBox1
+        '
+        Me.CheckBox1.AutoSize = True
+        Me.CheckBox1.Location = New System.Drawing.Point(12, 60)
+        Me.CheckBox1.Name = "CheckBox1"
+        Me.CheckBox1.Size = New System.Drawing.Size(71, 17)
+        Me.CheckBox1.TabIndex = 7
+        Me.CheckBox1.Text = "typewriter"
+        Me.CheckBox1.UseVisualStyleBackColor = True
+        '
         'Form13
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(579, 157)
+        Me.Controls.Add(Me.CheckBox1)
         Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.MaskedTextBox1)
@@ -107,4 +119,5 @@ Partial Class Form13
     Friend WithEvents MaskedTextBox1 As System.Windows.Forms.MaskedTextBox
     Friend WithEvents Label3 As System.Windows.Forms.Label
     Friend WithEvents Button1 As System.Windows.Forms.Button
+    Friend WithEvents CheckBox1 As System.Windows.Forms.CheckBox
 End Class

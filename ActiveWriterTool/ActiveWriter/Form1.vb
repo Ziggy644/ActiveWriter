@@ -142,6 +142,25 @@ Public Class Form1
     End Sub
 
     Private Sub Form1_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-        Init()
+        Dim updater As New System.Net.WebClient
+        Dim onlineversion As String = updater.DownloadString("https://raw.githubusercontent.com/Ziggy644/ActiveWriter/master/version.vv")
+        Try
+            Dim offlineversion As String = System.IO.File.ReadAllText("version.vv")
+            If onlineversion = offlineversion Then
+                Init()
+            ElseIf onlineversion > offlineversion Then
+                Dim r As DialogResult = MsgBox("Update availible" & Environment.NewLine & "download it now?", MsgBoxStyle.YesNo)
+                If DialogResult.OK Then
+                    Process.Start("https://github.com/Ziggy644/ActiveWriter/releases")
+                Else
+                    Init()
+                End If
+            Else
+                MsgBox("Found corrupted version data.")
+            End If
+        Catch ex As FileNotFoundException
+            MsgBox("Version data not found!")
+            Me.Close()
+        End Try
     End Sub
 End Class
