@@ -144,15 +144,17 @@ Public Class Form1
     End Sub
 
     Private Sub Form1_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-        Dim updater As New System.Net.WebClient
-        Dim onlineversion As String = updater.DownloadString("https://raw.githubusercontent.com/Ziggy644/ActiveWriter/master/version.vv")
-        If onlineversion = offlineversion Then
+        Dim updater As New System.Net.WebClient()
+        Dim version As String = updater.DownloadString("https://raw.githubusercontent.com/Ziggy644/ActiveWriter/master/version.html")
+        MsgBox(version)
+        If version = offlineversion Then
             Init()
-        ElseIf onlineversion <> offlineversion Then
-            Dim r As DialogResult = MsgBox("Update availible" & Environment.NewLine & "download it now?", MsgBoxStyle.YesNo)
-            If DialogResult.OK Then
+        Else
+            Dim r As MsgBoxResult = MsgBox("Update availible" & Environment.NewLine & "download it now?", MsgBoxStyle.YesNo)
+            If r = MsgBoxResult.Yes Then
                 Process.Start("https://github.com/Ziggy644/ActiveWriter/releases")
-            Else
+                Me.Close()
+            ElseIf DialogResult.No Then
                 Init()
             End If
         End If
