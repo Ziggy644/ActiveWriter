@@ -1,6 +1,6 @@
 ﻿Imports System.IO
-
 Public Class Form1
+    Public offlineversion As String = "1.2.1"
     Private Sub Init()
         If (Not System.IO.Directory.Exists("music")) Then
             System.IO.Directory.CreateDirectory("music")
@@ -146,24 +146,18 @@ Public Class Form1
     Private Sub Form1_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Dim updater As New System.Net.WebClient
         Dim onlineversion As String = updater.DownloadString("https://raw.githubusercontent.com/Ziggy644/ActiveWriter/master/version.vv")
-        Try
-            Dim offlineversion As String = System.IO.File.ReadAllText("version.vv")
-            If onlineversion = offlineversion Then
-                Init()
-            ElseIf onlineversion > offlineversion Then
-                Dim r As DialogResult = MsgBox("Update availible" & Environment.NewLine & "download it now?", MsgBoxStyle.YesNo)
-                If DialogResult.OK Then
-                    Process.Start("https://github.com/Ziggy644/ActiveWriter/releases")
-                Else
-                    Init()
-                End If
+        If onlineversion = offlineversion Then
+            Init()
+        ElseIf onlineversion > offlineversion Then
+            Dim r As DialogResult = MsgBox("Update availible" & Environment.NewLine & "download it now?", MsgBoxStyle.YesNo)
+            If DialogResult.OK Then
+                Process.Start("https://github.com/Ziggy644/ActiveWriter/releases")
             Else
-                MsgBox("Found corrupted version data.")
+                Init()
             End If
-        Catch ex As FileNotFoundException
-            MsgBox("Version data not found!")
-            Me.Close()
-        End Try
+        Else
+            MsgBox("Found corrupted version data.")
+        End If
     End Sub
 
     Private Sub TypewriterOptionsToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TypewriterOptionsToolStripMenuItem.Click
