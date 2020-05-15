@@ -22,6 +22,7 @@ Partial Class Form6
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Form6))
         Me.Label1 = New System.Windows.Forms.Label
         Me.MaskedTextBox1 = New System.Windows.Forms.MaskedTextBox
         Me.Button1 = New System.Windows.Forms.Button
@@ -61,6 +62,7 @@ Partial Class Form6
         Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.MaskedTextBox1)
         Me.Controls.Add(Me.Label1)
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MaximumSize = New System.Drawing.Size(200, 127)
         Me.MinimumSize = New System.Drawing.Size(200, 127)
         Me.Name = "Form6"

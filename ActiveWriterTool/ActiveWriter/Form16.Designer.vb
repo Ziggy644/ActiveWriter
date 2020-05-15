@@ -22,6 +22,7 @@ Partial Class Form16
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Form16))
         Me.MaskedTextBox1 = New System.Windows.Forms.MaskedTextBox
         Me.Label2 = New System.Windows.Forms.Label
         Me.Button1 = New System.Windows.Forms.Button
@@ -73,6 +74,7 @@ Partial Class Form16
         Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.MaskedTextBox1)
         Me.Controls.Add(Me.Label2)
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "Form16"
         Me.Text = "typewriter"
         Me.ResumeLayout(False)

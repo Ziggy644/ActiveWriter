@@ -1,6 +1,6 @@
 ﻿Imports System.IO
 Public Class Form1
-    Public offlineversion As String = "1.2.1"
+    Public offlineversion As String = "1.2.2"
     Private Sub Init()
         If (Not System.IO.Directory.Exists("music")) Then
             System.IO.Directory.CreateDirectory("music")

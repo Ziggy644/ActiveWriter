@@ -22,6 +22,7 @@ Partial Class Form8
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Form8))
         Me.Button1 = New System.Windows.Forms.Button
         Me.MaskedTextBox1 = New System.Windows.Forms.MaskedTextBox
         Me.TextBox1 = New System.Windows.Forms.TextBox
@@ -103,6 +104,7 @@ Partial Class Form8
         Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.Label1)
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MaximumSize = New System.Drawing.Size(300, 187)
         Me.MinimumSize = New System.Drawing.Size(300, 187)
         Me.Name = "Form8"

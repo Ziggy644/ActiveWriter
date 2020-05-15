@@ -22,6 +22,7 @@ Partial Class Form1
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Form1))
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip
         Me.FileToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
         Me.SaveAsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
@@ -42,9 +43,8 @@ Partial Class Form1
         Me.BackgrounImageToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
         Me.ForegroundImageToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
         Me.AddRowToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem
+        Me.TypewriterOptionsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
         Me.DataGridView1 = New System.Windows.Forms.DataGridView
-        Me.SaveFileDialog1 = New System.Windows.Forms.SaveFileDialog
-        Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog
         Me.Column1 = New System.Windows.Forms.DataGridViewTextBoxColumn
         Me.Column2 = New System.Windows.Forms.DataGridViewTextBoxColumn
         Me.Column3 = New System.Windows.Forms.DataGridViewTextBoxColumn
@@ -58,7 +58,8 @@ Partial Class Form1
         Me.Column9 = New System.Windows.Forms.DataGridViewTextBoxColumn
         Me.Column10 = New System.Windows.Forms.DataGridViewTextBoxColumn
         Me.Column11 = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.TypewriterOptionsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
+        Me.SaveFileDialog1 = New System.Windows.Forms.SaveFileDialog
+        Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog
         Me.MenuStrip1.SuspendLayout()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -189,6 +190,12 @@ Partial Class Form1
         Me.AddRowToolStripMenuItem1.Size = New System.Drawing.Size(183, 22)
         Me.AddRowToolStripMenuItem1.Text = "add row"
         '
+        'TypewriterOptionsToolStripMenuItem
+        '
+        Me.TypewriterOptionsToolStripMenuItem.Name = "TypewriterOptionsToolStripMenuItem"
+        Me.TypewriterOptionsToolStripMenuItem.Size = New System.Drawing.Size(183, 22)
+        Me.TypewriterOptionsToolStripMenuItem.Text = "typewriter options..."
+        '
         'DataGridView1
         '
         Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
@@ -197,16 +204,6 @@ Partial Class Form1
         Me.DataGridView1.Name = "DataGridView1"
         Me.DataGridView1.Size = New System.Drawing.Size(1144, 380)
         Me.DataGridView1.TabIndex = 1
-        '
-        'SaveFileDialog1
-        '
-        Me.SaveFileDialog1.FileName = "project.csv"
-        Me.SaveFileDialog1.Filter = "CSV files|*.csv"
-        '
-        'OpenFileDialog1
-        '
-        Me.OpenFileDialog1.FileName = "project.csv"
-        Me.OpenFileDialog1.Filter = "CSV files|*.csv"
         '
         'Column1
         '
@@ -273,11 +270,15 @@ Partial Class Form1
         Me.Column11.HeaderText = "foreground image"
         Me.Column11.Name = "Column11"
         '
-        'TypewriterOptionsToolStripMenuItem
+        'SaveFileDialog1
         '
-        Me.TypewriterOptionsToolStripMenuItem.Name = "TypewriterOptionsToolStripMenuItem"
-        Me.TypewriterOptionsToolStripMenuItem.Size = New System.Drawing.Size(183, 22)
-        Me.TypewriterOptionsToolStripMenuItem.Text = "typewriter options..."
+        Me.SaveFileDialog1.FileName = "project.csv"
+        Me.SaveFileDialog1.Filter = "CSV files|*.csv"
+        '
+        'OpenFileDialog1
+        '
+        Me.OpenFileDialog1.FileName = "project.csv"
+        Me.OpenFileDialog1.Filter = "CSV files|*.csv"
         '
         'Form1
         '
@@ -286,6 +287,7 @@ Partial Class Form1
         Me.ClientSize = New System.Drawing.Size(1165, 420)
         Me.Controls.Add(Me.DataGridView1)
         Me.Controls.Add(Me.MenuStrip1)
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MainMenuStrip = Me.MenuStrip1
         Me.MaximumSize = New System.Drawing.Size(1181, 459)
         Me.MinimumSize = New System.Drawing.Size(1181, 459)
