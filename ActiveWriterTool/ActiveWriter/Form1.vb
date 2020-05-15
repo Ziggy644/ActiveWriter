@@ -1,6 +1,6 @@
 ﻿Imports System.IO
 Public Class Form1
-    Public offlineversion As String = "1.2.2"
+    Public offlineversion As String = "1.2.3"
     Private Sub Init()
         If (Not System.IO.Directory.Exists("music")) Then
             System.IO.Directory.CreateDirectory("music")
@@ -148,15 +148,13 @@ Public Class Form1
         Dim onlineversion As String = updater.DownloadString("https://raw.githubusercontent.com/Ziggy644/ActiveWriter/master/version.vv")
         If onlineversion = offlineversion Then
             Init()
-        ElseIf onlineversion > offlineversion Then
+        ElseIf onlineversion <> offlineversion Then
             Dim r As DialogResult = MsgBox("Update availible" & Environment.NewLine & "download it now?", MsgBoxStyle.YesNo)
             If DialogResult.OK Then
                 Process.Start("https://github.com/Ziggy644/ActiveWriter/releases")
             Else
                 Init()
             End If
-        Else
-            MsgBox("Found corrupted version data.")
         End If
     End Sub
 
