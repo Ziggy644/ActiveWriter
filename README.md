@@ -1,5 +1,5 @@
 # ActiveWriter
-A custom scripting language wich acts like a film script.
+A custom scripting language which acts like a film script.
 Use ActiveWriterTool for a guide to make your own interactive story!
 
 # What's new in version 1.2?
