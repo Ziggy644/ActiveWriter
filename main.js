@@ -169,6 +169,8 @@ var videofading = false;
 var firstpress = true;
 var sleeping = false;
 var sfxplaying = false;
+var autotype = false;
+var speed = 20;
 var currentsong;
 var textindex = 0;
 var m_volume = 0;
@@ -930,8 +932,9 @@ document.getElementById('set').addEventListener('mouseout', function() {
 async function parseText(txts) {
 	var seperated = txts.split(/<|>/);
 	for(var i = 0; i < seperated.length; i++) {
+		var cmd;
 			if(seperated[i].indexOf(":") > -1) {
-				var cmd = seperated[i].split(":");
+				cmd = seperated[i].split(":");
 				if(cmd[0] == "sfx") {
 					playSFX(cmd[1], false);
 				} else if(cmd[0] == "music") {
@@ -1042,25 +1045,13 @@ async function parseText(txts) {
 							}, 2000);
 						}, cmd[2]);
 					}
-				} else if(cmd[0] == "text") {
-					if(!error) {
-						if(textindex == 0) {
-							setTimeout(function() {
-								if(cmd[1] == "true") {
-									typeWriter(cmd[2], cmd[3]);
-								} else {
-									txt_el.innerHTML = cmd[2];
-								}
-							}, 3000);
-						} else {
-							setTimeout(function() {
-								if(cmd[1] == "true") {
-									typeWriter(cmd[2], cmd[3]);
-								} else {
-									txt_el.innerHTML = cmd[2];
-								}
-							}, 600);
-						}
+				} else if(cmd[0] == "speed") {
+					speed = cmd[1];
+				} else if(cmd[0] == "autotype") {
+					if(cmd[1] == "false") {
+						autotype = false;
+					} else {
+						autotype = true;
 					}
 				} else if(cmd[0] == "autoclick") {
 					setTimeout(function() {
@@ -1074,13 +1065,49 @@ async function parseText(txts) {
 					await sleep(cmd[1]);
 					delaying = false;
 				} else {
-					error = true;
-					var emsg = "Syntax error: unkwown command: "+cmd[0];
-					console.error(emsg);
-					music[0][0].pause();
-					music[1][0].pause();
+					if(!error) {
+					var ctext = cmd.join(":");
+					if(textindex == 0) {
+						setTimeout(function() {
+							if(autotype) {
+								typeWriter(ctext, speed);
+							} else {
+								txt_el.innerHTML = ctext;
+							}
+						}, 3000);
+					} else {
+						setTimeout(function() {
+							if(autotype) {
+								typeWriter(ctext, speed);
+							} else {
+								txt_el.innerHTML = ctext;
+							}
+						}, 600);
+					}
 				}
 			}
+		} else {
+			if(!error) {
+				var ctext = String(seperated[i]);
+				if(textindex == 0) {
+					setTimeout(function() {
+						if(autotype) {
+							typeWriter(ctext, speed);
+						} else {
+							txt_el.innerHTML = ctext;
+						}
+					}, 3000);
+				} else {
+					setTimeout(function() {
+						if(autotype) {
+							typeWriter(ctext, speed);
+						} else {
+							txt_el.innerHTML = ctext;
+						}
+					}, 600);
+				}
+			}
+		}
 	}
 }
 document.getElementById('b0').addEventListener('mouseover', function() {

@@ -24,11 +24,8 @@ Partial Class Form13
     Private Sub InitializeComponent()
         Me.Label1 = New System.Windows.Forms.Label
         Me.TextBox1 = New System.Windows.Forms.TextBox
-        Me.Label2 = New System.Windows.Forms.Label
-        Me.MaskedTextBox1 = New System.Windows.Forms.MaskedTextBox
         Me.Label3 = New System.Windows.Forms.Label
         Me.Button1 = New System.Windows.Forms.Button
-        Me.CheckBox1 = New System.Windows.Forms.CheckBox
         Me.SuspendLayout()
         '
         'Label1
@@ -48,23 +45,6 @@ Partial Class Form13
         Me.TextBox1.Size = New System.Drawing.Size(480, 47)
         Me.TextBox1.TabIndex = 1
         '
-        'Label2
-        '
-        Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(9, 36)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(36, 13)
-        Me.Label2.TabIndex = 2
-        Me.Label2.Text = "speed"
-        '
-        'MaskedTextBox1
-        '
-        Me.MaskedTextBox1.Location = New System.Drawing.Point(51, 33)
-        Me.MaskedTextBox1.Mask = "###"
-        Me.MaskedTextBox1.Name = "MaskedTextBox1"
-        Me.MaskedTextBox1.Size = New System.Drawing.Size(27, 20)
-        Me.MaskedTextBox1.TabIndex = 3
-        '
         'Label3
         '
         Me.Label3.AutoSize = True
@@ -83,26 +63,13 @@ Partial Class Form13
         Me.Button1.Text = "add"
         Me.Button1.UseVisualStyleBackColor = True
         '
-        'CheckBox1
-        '
-        Me.CheckBox1.AutoSize = True
-        Me.CheckBox1.Location = New System.Drawing.Point(12, 60)
-        Me.CheckBox1.Name = "CheckBox1"
-        Me.CheckBox1.Size = New System.Drawing.Size(71, 17)
-        Me.CheckBox1.TabIndex = 7
-        Me.CheckBox1.Text = "typewriter"
-        Me.CheckBox1.UseVisualStyleBackColor = True
-        '
         'Form13
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(579, 157)
-        Me.Controls.Add(Me.CheckBox1)
         Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.Label3)
-        Me.Controls.Add(Me.MaskedTextBox1)
-        Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.TextBox1)
         Me.Controls.Add(Me.Label1)
         Me.MaximumSize = New System.Drawing.Size(595, 196)
@@ -115,9 +82,6 @@ Partial Class Form13
     End Sub
     Friend WithEvents Label1 As System.Windows.Forms.Label
     Friend WithEvents TextBox1 As System.Windows.Forms.TextBox
-    Friend WithEvents Label2 As System.Windows.Forms.Label
-    Friend WithEvents MaskedTextBox1 As System.Windows.Forms.MaskedTextBox
     Friend WithEvents Label3 As System.Windows.Forms.Label
     Friend WithEvents Button1 As System.Windows.Forms.Button
-    Friend WithEvents CheckBox1 As System.Windows.Forms.CheckBox
 End Class

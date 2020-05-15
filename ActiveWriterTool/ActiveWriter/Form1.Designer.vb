@@ -43,6 +43,8 @@ Partial Class Form1
         Me.ForegroundImageToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
         Me.AddRowToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem
         Me.DataGridView1 = New System.Windows.Forms.DataGridView
+        Me.SaveFileDialog1 = New System.Windows.Forms.SaveFileDialog
+        Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog
         Me.Column1 = New System.Windows.Forms.DataGridViewTextBoxColumn
         Me.Column2 = New System.Windows.Forms.DataGridViewTextBoxColumn
         Me.Column3 = New System.Windows.Forms.DataGridViewTextBoxColumn
@@ -51,11 +53,12 @@ Partial Class Form1
         Me.Column6 = New System.Windows.Forms.DataGridViewTextBoxColumn
         Me.Column7 = New System.Windows.Forms.DataGridViewTextBoxColumn
         Me.Column8 = New System.Windows.Forms.DataGridViewTextBoxColumn
+        Me.Column13 = New System.Windows.Forms.DataGridViewTextBoxColumn
+        Me.Column12 = New System.Windows.Forms.DataGridViewTextBoxColumn
         Me.Column9 = New System.Windows.Forms.DataGridViewTextBoxColumn
         Me.Column10 = New System.Windows.Forms.DataGridViewTextBoxColumn
         Me.Column11 = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.SaveFileDialog1 = New System.Windows.Forms.SaveFileDialog
-        Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog
+        Me.TypewriterOptionsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
         Me.MenuStrip1.SuspendLayout()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -109,7 +112,7 @@ Partial Class Form1
         '
         'EditToolStripMenuItem
         '
-        Me.EditToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AddRowToolStripMenuItem, Me.AddSoundEffectToolStripMenuItem, Me.RequestUserInputToolStripMenuItem, Me.AddUserOptionsToolStripMenuItem, Me.DisplayTitleToolStripMenuItem, Me.DisplayVideoToolStripMenuItem, Me.SetTextColorToolStripMenuItem, Me.SetVoiceToolStripMenuItem, Me.TypeTextToolStripMenuItem, Me.BackgrounImageToolStripMenuItem, Me.ForegroundImageToolStripMenuItem, Me.AddRowToolStripMenuItem1})
+        Me.EditToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AddRowToolStripMenuItem, Me.AddSoundEffectToolStripMenuItem, Me.RequestUserInputToolStripMenuItem, Me.AddUserOptionsToolStripMenuItem, Me.DisplayTitleToolStripMenuItem, Me.DisplayVideoToolStripMenuItem, Me.SetTextColorToolStripMenuItem, Me.SetVoiceToolStripMenuItem, Me.TypeTextToolStripMenuItem, Me.BackgrounImageToolStripMenuItem, Me.ForegroundImageToolStripMenuItem, Me.AddRowToolStripMenuItem1, Me.TypewriterOptionsToolStripMenuItem})
         Me.EditToolStripMenuItem.Name = "EditToolStripMenuItem"
         Me.EditToolStripMenuItem.Size = New System.Drawing.Size(39, 20)
         Me.EditToolStripMenuItem.Text = "edit"
@@ -189,11 +192,21 @@ Partial Class Form1
         'DataGridView1
         '
         Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column1, Me.Column2, Me.Column3, Me.Column4, Me.Column5, Me.Column6, Me.Column7, Me.Column8, Me.Column9, Me.Column10, Me.Column11})
+        Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column1, Me.Column2, Me.Column3, Me.Column4, Me.Column5, Me.Column6, Me.Column7, Me.Column8, Me.Column13, Me.Column12, Me.Column9, Me.Column10, Me.Column11})
         Me.DataGridView1.Location = New System.Drawing.Point(12, 28)
         Me.DataGridView1.Name = "DataGridView1"
         Me.DataGridView1.Size = New System.Drawing.Size(1144, 380)
         Me.DataGridView1.TabIndex = 1
+        '
+        'SaveFileDialog1
+        '
+        Me.SaveFileDialog1.FileName = "project.csv"
+        Me.SaveFileDialog1.Filter = "CSV files|*.csv"
+        '
+        'OpenFileDialog1
+        '
+        Me.OpenFileDialog1.FileName = "project.csv"
+        Me.OpenFileDialog1.Filter = "CSV files|*.csv"
         '
         'Column1
         '
@@ -235,6 +248,16 @@ Partial Class Form1
         Me.Column8.HeaderText = "voice"
         Me.Column8.Name = "Column8"
         '
+        'Column13
+        '
+        Me.Column13.HeaderText = "typewriter?"
+        Me.Column13.Name = "Column13"
+        '
+        'Column12
+        '
+        Me.Column12.HeaderText = "speed (ms)"
+        Me.Column12.Name = "Column12"
+        '
         'Column9
         '
         Me.Column9.HeaderText = "text"
@@ -250,15 +273,11 @@ Partial Class Form1
         Me.Column11.HeaderText = "foreground image"
         Me.Column11.Name = "Column11"
         '
-        'SaveFileDialog1
+        'TypewriterOptionsToolStripMenuItem
         '
-        Me.SaveFileDialog1.FileName = "project.csv"
-        Me.SaveFileDialog1.Filter = "CSV files|*.csv"
-        '
-        'OpenFileDialog1
-        '
-        Me.OpenFileDialog1.FileName = "project.csv"
-        Me.OpenFileDialog1.Filter = "CSV files|*.csv"
+        Me.TypewriterOptionsToolStripMenuItem.Name = "TypewriterOptionsToolStripMenuItem"
+        Me.TypewriterOptionsToolStripMenuItem.Size = New System.Drawing.Size(183, 22)
+        Me.TypewriterOptionsToolStripMenuItem.Text = "typewriter options..."
         '
         'Form1
         '
@@ -288,17 +307,6 @@ Partial Class Form1
     Friend WithEvents AddRowToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents AddSoundEffectToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents RequestUserInputToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents Column1 As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents Column2 As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents Column3 As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents Column4 As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents Column5 As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents Column6 As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents Column7 As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents Column8 As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents Column9 As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents Column10 As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents Column11 As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents AddUserOptionsToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents DisplayTitleToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents DisplayVideoToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
@@ -313,5 +321,19 @@ Partial Class Form1
     Friend WithEvents SaveFileDialog1 As System.Windows.Forms.SaveFileDialog
     Friend WithEvents OpenFileDialog1 As System.Windows.Forms.OpenFileDialog
     Friend WithEvents OpenProjectToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents TypewriterOptionsToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents Column1 As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents Column2 As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents Column3 As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents Column4 As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents Column5 As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents Column6 As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents Column7 As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents Column8 As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents Column13 As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents Column12 As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents Column9 As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents Column10 As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents Column11 As System.Windows.Forms.DataGridViewTextBoxColumn
 
 End Class

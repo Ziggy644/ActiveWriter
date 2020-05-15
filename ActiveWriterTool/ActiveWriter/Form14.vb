@@ -4,7 +4,7 @@
             MsgBox("Please fill in all the fields")
         Else
             Dim ind As Integer = Form1.DataGridView1.CurrentRow.Index
-            Form1.DataGridView1.Rows(ind).Cells(9).Value = TextBox1.Text & ":bkg:" & MaskedTextBox1.Text
+            Form1.DataGridView1.Rows(ind).Cells(11).Value = TextBox1.Text & ":bkg:" & MaskedTextBox1.Text
             Me.Close()
         End If
     End Sub

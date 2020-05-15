@@ -62,9 +62,11 @@ Public Class Form1
         types(5) = "video"
         types(6) = "txtcolor"
         types(7) = "voice"
-        types(8) = "text"
-        types(9) = "image"
-        types(10) = "image"
+        types(8) = "autotype"
+        types(9) = "speed"
+        types(10) = "text"
+        types(11) = "image"
+        types(12) = "image"
         Dim res(DataGridView1.RowCount + 2) As String
         For i As Integer = 0 To DataGridView1.RowCount - 1
             Dim cr(10) As String
@@ -162,5 +164,9 @@ Public Class Form1
             MsgBox("Version data not found!")
             Me.Close()
         End Try
+    End Sub
+
+    Private Sub TypewriterOptionsToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TypewriterOptionsToolStripMenuItem.Click
+        Form16.Show()
     End Sub
 End Class
