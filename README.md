@@ -32,7 +32,7 @@ Sound effects, music, timing, voicing, foreground image, background image, video
 
 # Documentation
 
-For more information about the project, real manual.pdf (Dutch version) of manual-en.pdf (English version, Google Translate!)
+For more information about the project, read manual.pdf (Dutch version) of manual-en.pdf (English version, Google Translate!)
 
 # TODO
 
