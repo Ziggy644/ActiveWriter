@@ -152,6 +152,7 @@ var prompting = false;
 var prompted = false;
 var btnresult = null;
 var autoclick = false;
+var optionstext = "";
 var person = "";
 var voice = null;
 var v = false;
@@ -516,13 +517,20 @@ function sleep(ms) {
 function optionEvent(evt, params) {
 	document.getElementById('clickable').style.display = null;
 	document.getElementById('message').style.visibility = "hidden";
-	var splparams = params.split('$');
+	var splparams;
 	if(evt == "skip") {
-			parseText("<voice:"+splparams[0]+"><text:"+splparams[1]+":"+splparams[2]+">");
-			textindex += splparams[3];
+		splparams = params.split("$");
+		setTimeout(function() {
+			parseText(splparams[0]);
+			textindex += splparams[1];
 			prompting = false;
+			autoclick = true;
+			document.getElementById('clickable').click();
+			autoclick = false;
 			events = [];
+		}, 500);
 	} else if(evt == "continue") {
+		splparams = params;
 		textindex++;
 		prompting = false;
 		autoclick = true;
@@ -530,8 +538,10 @@ function optionEvent(evt, params) {
 		autoclick = false;
 		events = [];
 	} else if(evt == "confirm") {
+		splparams = params.split("$");
 		setTimeout(function() {
-			textindex -= splparams[0];
+			parseText(splparams[0]);
+			textindex -= splparams[1];
 			prompting = false;
 			autoclick = true;
 			document.getElementById('clickable').click();
@@ -539,7 +549,8 @@ function optionEvent(evt, params) {
 			events = [];
 		}, 500);
 	} else if(evt == "stop") {
-		parseText("<voice:"+splparams[0]+"><text:"+splparams[1]+":"+splparams[2]+">");
+		splparams = params.split("$");
+		parseText(splparams[0]);
 		events = [];
 		setTimeout(function() {
 			window.close();
@@ -994,8 +1005,8 @@ function parseInstructions(cmd) {
 					}
 				} else if(cmd[0] == "options") {
 					prompting = true;
-					playSFX("prompt");
-					events.push(cmd[4], cmd[5], cmd[6], cmd[7]);
+					playSFX(baseSFX.s_prompt, true);
+					events.push(cmd[4], cmd[5], cmd[6], optionstext);
 					document.getElementById('clickable').style.display = "block";
 					document.getElementById('message').style.visibility = "visible";
 					document.getElementById('msgtxt').innerHTML = cmd[1];
@@ -1058,31 +1069,35 @@ function parseInstructions(cmd) {
 			}
 	}
 async function parseText(txts) {
+	var seperatedtext;
 	if(txts.indexOf("§") > -1) {
-		var seperatedtext = txts.split("§");
-		var innerIndex = seperatedtext.length;
-		var currentInnerIndex = 0;
+		if(txts.indexOf("<options") > -1) {
+			var splicedtext = txts.split("£")
+			optionstext = splicedtext[1];
+			seperatedtext = (splicedtext[0] + splicedtext[2]).split("§");
+		} else {
+			seperatedtext = txts.split("§");
+		}
 		for(var i = 0; i < seperatedtext.length; i++) {
-			currentInnerIndex = i;
 			if(seperatedtext[i].indexOf("<") > -1 && seperatedtext[i].indexOf(">") > -1) {
 				if(!error) {
-					var seperated = seperatedtext[i].split("<").join("").split(">");
-					for(var j = 0; j < seperated.length; j++) {
-						if(seperated[j] !== "" || null || undefined) {
-							if(seperated[j].indexOf(":") > -1) {
-								var cmd = seperated[j].split(":");
-								if(cmd[0] == "delay") {
-									sleeping = true;
-									await sleep(cmd[1]);
-									sleeping = false;
+						var seperated = seperatedtext[i].split("<").join("").split(">");
+						for(var j = 0; j < seperated.length; j++) {
+							if(seperated[j] !== "" || null || undefined) {
+								if(seperated[j].indexOf(":") > -1) {
+									var cmd = seperated[j].split(":");
+									if(cmd[0] == "delay") {
+										sleeping = true;
+										await sleep(cmd[1]);
+										sleeping = false;
+									}
+									parseInstructions(cmd);
+								} else {
+									parseInstructions(seperated[j]);
 								}
-								parseInstructions(cmd);
-							} else {
-								parseInstructions(seperated[j]);
 							}
 						}
-					}
-				} else {
+					} else {
 					break;
 				}
 			} else {
