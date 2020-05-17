@@ -3,6 +3,12 @@ A custom scripting language which acts like a film script.
 Use ActiveWriterTool for a guide to make your own interactive story!
 
 # Changelog
+
+2.1
+
+
+-changed the syntax of the options-instruction for better efficiency.
+
 2.0
 
 
