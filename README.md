@@ -4,6 +4,11 @@ Use ActiveWriterTool for a guide to make your own interactive story!
 
 # Changelog
 
+2.1.1
+
+
+-fixed rule skipping on user input
+
 2.1
 
 
