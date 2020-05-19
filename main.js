@@ -238,7 +238,7 @@ function fadeInVideo(isrc, speed, lop) {
 					tf.addEventListener('ended', function() {
 						fadeOutVideo(isrc, 10);
 						setTimeout(function() {
-							textindex++;
+							
 							v = false;
 							
 							autoclick = true;
@@ -531,7 +531,7 @@ function optionEvent(evt, params) {
 		}, 500);
 	} else if(evt == "continue") {
 		splparams = params;
-		textindex++;
+		
 		prompting = false;
 		autoclick = true;
 		document.getElementById('clickable').click();
@@ -1117,7 +1117,7 @@ async function parseText(txts) {
 		if(!error) {
 			var ctext = txts;
 			if(autotype) {
-			typeWriter(ctext, speed);
+				typeWriter(ctext, speed);
 			} else {
 				txt_el.innerHTML = ctext;	
 			}
